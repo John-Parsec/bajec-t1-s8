@@ -15,24 +15,25 @@ class Tarefa{
     public:
         Tarefa(string nome);
         string geraCodigo();
-        int getCodigo();
+        string getCodigo();
         string getNome();
         void setNome(string nome);
         bool getConcluido();
         void setConcluido(bool concluido);
+        string toString();
 };
  
 
 class GerenciadorTarefas{
     private:
-        vector<Tarefa*> tarefas
+        vector<Tarefa*> tarefas;
     public:
         void adicionarTarefa(string nome);
-        void concluirTarefa();
+        void concluirTarefa(string codigo);
         void listarPendentes();
         int getQuantidadeDeTarefas();
-        int getTarefa(string codigo);
-        int getTarefa(int index);
+        Tarefa* getTarefa(string codigo);
+        Tarefa* getTarefa(int index);
 };
 
 class BancoDeDados{
