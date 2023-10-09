@@ -18,3 +18,12 @@ EstoqueLivro* Biblioteca::buscarEstoque(Livro livro){
     }
 }
 
+void Biblioteca::registrarEmprestimo(Livro livro, Usuario usuario){
+    if (livroDisponivel(livro)){
+        EstoqueLivro* estoqueLivro = buscarEstoque(livro);
+        estoqueLivro->qtde--;
+        Emprestimo* emprestimo = new Emprestimo(&livro, &usuario, Data()); // falta implementar a classe Data
+        emprestimos.push_back(emprestimo);
+    }
+}
+
