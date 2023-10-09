@@ -21,13 +21,16 @@ class Usuario{
     public:
         Usuario(string nomeUsuario, string nome);
         string getNome();
+        void setNome(string nome); 
         string getNomeUsuario();
-        void setNome(string nome);
         void setNomeUsuario(string nomeUsuario);
+        int qntdSeguidores();
+        int qntdSeguindo();
         void postaTweet(Tweet* tweet);
         void seguir(Usuario* usuario);
         vector<Tweet*> receberFeed();
-        string toString();
+        string toStringUser();
+        string toStringCompleto();
 };
 
 class Tweet{
@@ -48,13 +51,14 @@ class Tweet{
 class RedeSocial{
     private:
         vector<Usuario*> usuarios;
-        vector<Tweet*> usuarios;
+        vector<Tweet*> tweets;
     public:
         bool registarUsuario(string nomeUsuario, string nome);
+        static void adicionarTweet(Tweet* tweet); // inserir ordenado 
         Usuario* buscarUsuario(string nomeUsuario);
         Usuario* buscarUsuario(int index);
         vector<Usuario*> listarUsuarios();
-        vector<Tweet*> listarTweets();
+        static vector<Tweet*> listarTweets();
 };
 
 class BancoDeDados{
