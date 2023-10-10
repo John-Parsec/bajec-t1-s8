@@ -77,17 +77,17 @@ class Roteiro: public Evento{
 class Deslocamento: public Evento{
     private:
         string cod;
-        Roteiro* origem;
-        Roteiro* destino;
+        Evento* origem;
+        Evento* destino;
 
     public:
-        Deslocamento(Roteiro* origem, Roteiro* destino);
+        Deslocamento(Evento* origem, Evento* destino);
         string getCod();
-        Roteiro* getOrigem();
-        Roteiro* getDestino();
+        Evento* getOrigem();
+        Evento* getDestino();
         void setCod(string cod);
-        void setOrigem(Roteiro* origem);
-        void setDestino(Roteiro* destino);
+        void setOrigem(Evento* origem);
+        void setDestino(Evento* destino);
 };
 
 class Pernoite: public Evento{
@@ -127,6 +127,7 @@ class Agencia{
         vector<Pacote*> pacotes;
         vector<Evento*> eventos;
         vector<Venda*> vendas;
+        vector<Dependete*> dependentes;
 
     public:
         Agencia(string nome, string cnpj);
@@ -148,9 +149,9 @@ class Agencia{
         bool removeVenda(Venda* venda);
         void cadastarRoteiro(string nome);
         void cadastarDeslocamento(Evento origem, Evento destino);
-        void criarPacote(vector<Evento*> eventos);
+        void cadastarPernoite(string nome);
+        void criarPacote(string nome, vector<Evento*> eventos);
         void addCliente(string nome, string cpf);
-        void addDependente(string nome, string cpf);
         void addDependente(string nome, int index);
         void addDependente(string nome, Cliente* dependente_de);
         void addVenda(Cliente* cliente, Pacote* pacote);
