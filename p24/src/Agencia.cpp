@@ -159,11 +159,14 @@ void Agencia::listarPacotes(){
     for(auto it = this->pacotes.begin(); it != this->pacotes.end(); ++it){
         cout << "Pacote: " << (*it)->getNome() << endl;
         cout << "\tEventos:" << endl;
+
         vector<Evento *> eventos = (*it)->getEventos();
         for(auto it2 = eventos.begin(); it2 != eventos.end(); ++it2){
             cout << "\t\t" << (*it2)->getTipo()  << "\t-\t" << (*it2)->getDuraçãoPrevista() << endl;
         }
 
         cout << endl;
+
+        delete &eventos;
     }
 }
