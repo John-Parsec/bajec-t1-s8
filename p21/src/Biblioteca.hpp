@@ -72,6 +72,7 @@ class Biblioteca{
         void adicionarLivro(Livro livro, int qtde);
         void registrarEmprestimo(Livro livro, Usuario usuario);
         bool livroDisponivel(Livro livro);
+        EstoqueLivro* buscarEstoque(Livro livro);
 };
 
 #endif
