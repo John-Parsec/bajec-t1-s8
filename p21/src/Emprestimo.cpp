@@ -5,7 +5,7 @@ Emprestimo::Emprestimo(Livro* livro, Usuario* usuario, Data dataInicio){
     this->usuario = usuario;
     this->dataInicio = dataInicio;
     this->devolvido = false;
-}
+};
 
 Livro* Emprestimo::getLivro(){
     return this->livro;
