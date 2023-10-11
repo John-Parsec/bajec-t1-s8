@@ -36,11 +36,15 @@ class Evento{
 
     protected:
         int duraçãoPrevista;
+        string cod;
     
     public:
         Evento(int duraçãoPrevista);
         int getDuraçãoPrevista();
+        string getCod();
         void setDuraçãoPrevista(int duraçãoPrevista);
+        void setCod(string cod);
+        string geraCod(int tam);
 };
 
 class Pacote{
@@ -63,44 +67,35 @@ class Pacote{
 
 class Roteiro: public Evento{
     private:
-        string cod;
         string nome;
 
     public:
         Roteiro(string nome);
-        string getCod();
         string getNome();
-        void setCod(string cod);
         void setNome(string nome);
 };
 
 class Deslocamento: public Evento{
     private:
-        string cod;
         Evento* origem;
         Evento* destino;
 
     public:
         Deslocamento(Evento* origem, Evento* destino);
-        string getCod();
         Evento* getOrigem();
         Evento* getDestino();
-        void setCod(string cod);
         void setOrigem(Evento* origem);
         void setDestino(Evento* destino);
 };
 
 class Pernoite: public Evento{
     private:
-        string cod;
-        string nome;
+        string local;
 
     public:
-        Pernoite(string nome);
-        string getCod();
-        string getNome();
-        void setCod(string cod);
-        void setNome(string nome);
+        Pernoite(string local);
+        string getLocal();
+        void setLocal(string local);
 };
 
 class Venda{
