@@ -57,8 +57,8 @@ class Emprestimo{
         bool devolvido;
     public:
         Emprestimo(Livro* livro, Usuario* usuario, Data dataInicio);
-        Livro getLivro();
-        Usuario getUsuario();
+        Livro* getLivro();
+        Usuario* getUsuario();
         void setDataDevolucao(Data dataDevolucao);
         
 };
