@@ -117,13 +117,13 @@ void Agencia::addCliente(string nome, string cpf){
 }
 
 void Agencia::addDependente(string nome, Cliente* dependente_de){
-    Dependete dependente(nome, dependente_de);
+    Dependente dependente(nome, dependente_de);
 
     this->dependentes.push_back(&dependente);
 }
 
 void Agencia::addDependente(string nome, int index){
-    Dependete dependente(nome, this->clientes[index]);
+    Dependente dependente(nome, this->clientes[index]);
 
     this->dependentes.push_back(&dependente);
 }
@@ -136,7 +136,7 @@ void Agencia::listarClientes(){
     for(auto it = this->clientes.begin(); it != this->clientes.end(); ++it){
         cout << (*it)->getNome() << endl;
         
-        vector<Dependete *> dep;
+        vector<Dependente *> dep;
 
         for(auto depedente: this->dependentes){
             if(depedente->getDependenteDe() == *it){
