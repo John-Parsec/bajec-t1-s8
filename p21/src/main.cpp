@@ -7,32 +7,39 @@ using namespace std;
 
 int main(void)
 {
-    Livro livro1("Ana Lima", "Pe de figo");
+    Livro livro1("Machado", "Dom Casmurro");
+    Livro livro2("Mario", "Macunaima");
+    Livro livro3("Paulo", "O Alquimista");
+    Livro livro4("Clarice", "A Hora da ");
 
-    Usuario usuario1("Leticia", "12345", "123456789");
-    Usuario usuario2("Patricia", "129", "123456789");
-    Usuario usuario3("Caio", "19", "123456789");
+    Usuario usuario1("Leticia", "12345675890", "123456789");
+    Usuario usuario2("Patricia", "0000000000", "7398181818");
+    Usuario usuario3("Caio", "894561237", "00000000000");
 
     Biblioteca biblioteca;
 
-    biblioteca.adicionarLivro(livro1, 2);
+    biblioteca.adicionarLivro(livro1, 10);
+    biblioteca.adicionarLivro(livro2, 3);
+    biblioteca.adicionarLivro(livro3, 1);
+    biblioteca.adicionarLivro(livro4, 1);
+    Biblioteca ::listarLivros(biblioteca.getEstoque());
+
     biblioteca.registrarEmprestimo(livro1, usuario1);
     biblioteca.registrarEmprestimo(livro1, usuario2);
     biblioteca.registrarEmprestimo(livro1, usuario3);
+    biblioteca.registrarEmprestimo(livro2, usuario1);
+    biblioteca.registrarEmprestimo(livro3, usuario1);
+    biblioteca.registrarEmprestimo(livro4, usuario3);
 
-    biblioteca.devolverLivro(livro1, usuario1);
+    biblioteca.registrarEmprestimo(livro4, usuario2); // não deve ser registrado pois não há estoque
 
-    biblioteca.registrarEmprestimo(livro1, usuario3);
+    biblioteca.devolverLivro(livro4, usuario3);
+    Biblioteca ::listarLivros(biblioteca.getEstoque());
+
+    biblioteca.registrarEmprestimo(livro4, usuario2); // agora pode ser registrado pois há estoque
 
     Biblioteca::listarEmprestimos(biblioteca.getEmprestimos());
-    Biblioteca::listarEmprestimos(biblioteca.getEmprestimos(), usuario1);
+    Biblioteca::listarEmprestimos(biblioteca.getEmprestimos(), usuario3); // listar empréstimos de um usuário, neste caso do usuário3
 
-
-    /*struct tm data = *localtime(&tempo);
-    string completa = to_string( data.tm_mday)+"/"+ to_string(data.tm_mon + 1) +"/"+ to_string(data.tm_year + 1900);
-    cout << completa << endl;
-    time_t futuro = tempo + 21 * 24 * 60 * 60;
-    data = *localtime(&futuro);
-    completa = to_string( data.tm_mday)+"/"+ to_string(data.tm_mon + 1) +"/"+ to_string(data.tm_year + 1900);
-    cout <<"apos 7 dias:"<< completa << endl;*/
+    return 0;
 }
