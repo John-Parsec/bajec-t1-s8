@@ -66,10 +66,10 @@ class Emprestimo{
     private:
         Livro* livro;
         Usuario* usuario;
-        string dataInicio;
+        time_t dataInicio;
         bool devolvido;
     public:
-        Emprestimo(Livro* livro, Usuario* usuario, string dataInicio);
+        Emprestimo(Livro* livro, Usuario* usuario, time_t dataInicio);
         Livro getLivro();
         Usuario getUsuario();
         void setDataDevolucao(Data dataDevolucao);
