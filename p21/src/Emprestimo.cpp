@@ -7,15 +7,25 @@ Emprestimo::Emprestimo(Livro* livro, Usuario* usuario, time_t dataInicio){
     this->devolvido = false;
 };
 
-// Livro* Emprestimo::getLivro(){
-//     return this->livro;
-// }
+Livro* Emprestimo::getLivro(){
+    return this->livro;
+}
 
-// Usuario* Emprestimo::getUsuario(){
-//     return this->usuario;
-// }
+Usuario* Emprestimo::getUsuario(){
+    return this->usuario;
+}
 
-// void Emprestimo::setDataDevolucao(Data dataDevolucao){
-//     this->dataDevolucao = dataDevolucao;
-//     this->devolvido = true;
-// }
+time_t Emprestimo::getDataInicio(){
+    return this->dataInicio;
+}
+
+bool Emprestimo::getDevolvido(){
+    return this->devolvido;
+}
+
+void Emprestimo::setDevolvido(bool devolvido){
+    this->devolvido = devolvido;
+}
+
+
+
