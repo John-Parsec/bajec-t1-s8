@@ -84,12 +84,14 @@ class RedeSocial{
         Usuario* buscarUsuario(int index);
         vector<Usuario*> listarUsuarios();
         static vector<Tweet*> listarTweets();
+        vector<Usuario*> getUsuarios();
+        vector<Tweet*> getTweets();
 };
 
 class BancoDeDados{
     public:
-        void salvarDados(string nomeArquivo);
-        void recuperarDados(string nomeArquivo);
+        static void salvarDados(string nomeArquivo, RedeSocial redeSocial);
+        static void recuperarDados(string nomeArquivo, RedeSocial *redeSocial);
 };
 
 #endif
