@@ -1,21 +1,21 @@
 #include "Biblioteca.hpp"
 
-Emprestimo::Emprestimo(Livro* livro, Usuario* usuario, Data dataInicio){
+Emprestimo::Emprestimo(Livro* livro, Usuario* usuario, time_t dataInicio){
     this->livro = livro;
     this->usuario = usuario;
     this->dataInicio = dataInicio;
     this->devolvido = false;
 };
 
-Livro* Emprestimo::getLivro(){
-    return this->livro;
-}
+// Livro* Emprestimo::getLivro(){
+//     return this->livro;
+// }
 
-Usuario* Emprestimo::getUsuario(){
-    return this->usuario;
-}
+// Usuario* Emprestimo::getUsuario(){
+//     return this->usuario;
+// }
 
-void Emprestimo::setDataDevolucao(Data dataDevolucao){
-    this->dataDevolucao = dataDevolucao;
-    this->devolvido = true;
-}
+// void Emprestimo::setDataDevolucao(Data dataDevolucao){
+//     this->dataDevolucao = dataDevolucao;
+//     this->devolvido = true;
+// }
