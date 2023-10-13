@@ -88,6 +88,7 @@ class Biblioteca{
         void registrarEmprestimo(Livro livro, Usuario usuario);
         bool livroDisponivel(Livro livro);
         EstoqueLivro* buscarEstoque(Livro livro);
+        void devolverLivro(Livro livro, Usuario usuario);
 };
 
 #endif

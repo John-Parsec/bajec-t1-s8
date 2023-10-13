@@ -19,6 +19,7 @@ int main(void) {
     biblioteca.registrarEmprestimo(livro1, usuario2);
     biblioteca.registrarEmprestimo(livro1, usuario3);
 
+    biblioteca.devolverLivro(livro1, usuario1);
 
 
 

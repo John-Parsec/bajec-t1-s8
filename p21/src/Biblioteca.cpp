@@ -62,3 +62,20 @@ void Biblioteca::adicionarLivro(Livro livro, int qtde)
         cout << "Livro adicionado com sucesso!" << endl;
     }
 }
+void Biblioteca ::devolverLivro(Livro livro, Usuario usuario)
+{
+    EstoqueLivro *estoque = buscarEstoque(livro);
+    for (int i = 0; i < emprestimos.size(); i++)
+    {
+        if (emprestimos[i]->getLivro()->getTitulo() == livro.getTitulo() && emprestimos[i]->getLivro()->getAutor() == livro.getAutor() && emprestimos[i]->getDevolvido() == false && emprestimos[i]->getUsuario()->getCPF() == usuario.getCPF())
+
+        {
+
+            emprestimos[i]->setDevolvido(true);
+            cout << "Livro devolvido com sucesso!" << endl;
+            estoque->qtde++;
+            return;
+        }
+    }
+    cout << "Devolução não aceita" << endl;
+}
