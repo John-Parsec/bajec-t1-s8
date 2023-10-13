@@ -37,6 +37,8 @@ Tarefa* GerenciadorTarefas::getTarefa(string codigo){
             return tarefas[i];
         }
     }
+
+    cout << "Tarefa nao encontrada";
 }
 
 Tarefa* GerenciadorTarefas::getTarefa(int index){
