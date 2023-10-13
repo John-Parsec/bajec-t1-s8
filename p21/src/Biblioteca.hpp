@@ -48,7 +48,7 @@ class Data{
 
 };
 
-class Emprestimo{
+/*class Emprestimo{
     private:
         Livro* livro;
         Usuario* usuario;
@@ -61,7 +61,22 @@ class Emprestimo{
         Usuario getUsuario();
         void setDataDevolucao(Data dataDevolucao);
         
+};*/
+class Emprestimo{
+    private:
+        Livro* livro;
+        Usuario* usuario;
+        string dataInicio;
+        bool devolvido;
+    public:
+        Emprestimo(Livro* livro, Usuario* usuario, string dataInicio);
+        Livro getLivro();
+        Usuario getUsuario();
+        void setDataDevolucao(Data dataDevolucao);
+        
 };
+
+string formatarData(time_t data);
 
 class Biblioteca{
     private:
