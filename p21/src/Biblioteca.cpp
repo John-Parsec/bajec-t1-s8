@@ -19,6 +19,7 @@ EstoqueLivro *Biblioteca::buscarEstoque(Livro livro)
             return estoque[i];
         }
     }
+    return NULL;
 }
 
 void Biblioteca::registrarEmprestimo(Livro livro, Usuario usuario)
