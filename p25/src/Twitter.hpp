@@ -21,7 +21,7 @@ class DataHora{
         string toString();
 
         //Retorna a data e hora atual
-        static tm dataHoraAtual();
+        static DataHora dataHoraAtual();
 
         //Verificam apenas a Data
         bool dataAnterior(DataHora* dataHora);
