@@ -24,10 +24,12 @@ class Usuario{
         void setNome(string nome); 
         string getNomeUsuario();
         void setNomeUsuario(string nomeUsuario);
+        vector<Usuario*> getSeguidores();
+        vector<Usuario*> getSeguindo();
         int qntdSeguidores();
         int qntdSeguindo();
         void postaTweet(Tweet* tweet);
-        void seguir(Usuario* usuario);
+        bool seguir(Usuario* usuario);
         vector<Tweet*> receberFeed();
         string toStringUser();
         string toStringCompleto();
