@@ -94,7 +94,7 @@ void Agencia::cadastarRoteiro(string nome){
     this->eventos.push_back(new Roteiro(nome));
 }
 
-void Agencia::cadastarDeslocamento(Evento origem, Evento destino){
+void Agencia::cadastarDeslocamento(Evento *origem, Evento *destino){
     this->eventos.push_back(new Deslocamento(origem, destino));
 }
 
@@ -132,3 +132,41 @@ void Agencia::addVenda(Cliente* cliente, Pacote* pacote){
     this->vendas.push_back(new Venda(cliente, pacote));
 }
 
+void Agencia::listarClientes(){
+    for(auto it = this->clientes.begin(); it != this->clientes.end(); ++it){
+        cout << (*it)->getNome() << endl;
+        
+        vector<Dependete *> dep;
+
+        for(auto depedente: this->dependentes){
+            if(depedente->getDependenteDe() == *it){
+                dep.push_back(depedente);
+            }
+        }
+        if(dep.size() == 0){
+            cout << "\tDependentes:" << endl;
+            
+            for(auto depedente: dep){
+                cout << "\t\t" << depedente->getNome() << endl;
+            }
+        }
+
+        cout << endl;
+    }
+}
+
+void Agencia::listarPacotes(){
+    for(auto it = this->pacotes.begin(); it != this->pacotes.end(); ++it){
+        cout << "Pacote: " << (*it)->getNome() << endl;
+        cout << "\tEventos:" << endl;
+
+        vector<Evento *> eventos = (*it)->getEventos();
+        for(auto it2 = eventos.begin(); it2 != eventos.end(); ++it2){
+            cout << "\t\t" << (*it2)->getTipo()  << "\t-\t" << (*it2)->getDuraçãoPrevista() << endl;
+        }
+
+        cout << endl;
+
+        delete &eventos;
+    }
+}

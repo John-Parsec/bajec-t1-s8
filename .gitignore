@@ -31,5 +31,7 @@
 *.out
 *.app
 
-#pastas
+# Pastas
 .vscode
+*/src/output
+*/src/build

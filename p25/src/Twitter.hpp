@@ -4,12 +4,37 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <ctime>
 
 class Tweet;
 using namespace std;
 
 class DataHora{
+    private:
+        tm* dataHora;
 
+    public:
+        DataHora();
+        DataHora(int dia, int mes, int ano, int hora, int minuto);
+        tm* getDataHora();
+        void setDataHora(int dia, int mes, int ano, int hora, int minuto);
+        string toString();
+
+        //Retorna a data e hora atual
+        static tm dataHoraAtual();
+
+        //Verificam apenas a Data
+        bool dataAnterior(DataHora* dataHora);
+        bool dataPosterior(DataHora* dataHora);
+        bool dataIgual(DataHora* dataHora);
+        
+        //Verificam Data e HOra
+        bool operator<(DataHora* dataHora);
+        bool operator<=(DataHora* dataHora);
+        bool operator>(DataHora* dataHora);
+        bool operator>=(DataHora* dataHora);
+        bool operator==(DataHora* dataHora);
+        void operator=(DataHora* dataHora);
 };
 
 class Usuario{
