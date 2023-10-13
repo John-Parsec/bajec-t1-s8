@@ -38,7 +38,8 @@ int Usuario::qntdSeguindo(){
 }
 
 void Usuario::postaTweet(Tweet* tweet){
-    RedeSocial::adicionarTweet(tweet);
+    if(tweet->validaTweet())
+        RedeSocial::adicionarTweet(tweet);
 }
 
 bool Usuario::seguir(Usuario* usuario){

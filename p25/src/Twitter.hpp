@@ -46,6 +46,7 @@ class Tweet{
         string getConteudo();
         DataHora getDataCriacao();
         bool validaTweet(string conteudo); // verificar se tem ate 255 caracteres
+        bool validaTweet();
         string toString();
 };
 
