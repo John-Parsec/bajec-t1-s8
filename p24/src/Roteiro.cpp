@@ -11,3 +11,7 @@ string Roteiro::getNome(){
 void Roteiro::setNome(string nome){
     this->nome = nome;
 }
+
+string Roteiro::getTipo() const{
+    return "Roteiro";
+}

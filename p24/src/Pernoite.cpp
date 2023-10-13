@@ -11,3 +11,7 @@ string Pernoite::getLocal(){
 void Pernoite::setLocal(string local){
     this->local = local;
 }
+
+string Pernoite::getTipo() const{
+    return "Pernoite";
+}

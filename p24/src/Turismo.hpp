@@ -45,7 +45,7 @@ class Evento{
         void setDuraçãoPrevista(int duraçãoPrevista);
         void setCod(string cod);
         string geraCod(int tam);
-        string getTipo();
+        virtual string getTipo() const = 0;
 };
 
 class Pacote{
@@ -75,6 +75,7 @@ class Roteiro: public Evento{
         Roteiro(string nome);
         string getNome();
         void setNome(string nome);
+        string getTipo() const;
 };
 
 class Deslocamento: public Evento{
@@ -88,6 +89,7 @@ class Deslocamento: public Evento{
         Evento* getDestino();
         void setOrigem(Evento* origem);
         void setDestino(Evento* destino);
+        string getTipo() const;
 };
 
 class Pernoite: public Evento{
@@ -98,6 +100,7 @@ class Pernoite: public Evento{
         Pernoite(string local);
         string getLocal();
         void setLocal(string local);
+        string getTipo() const;
 };
 
 class Venda{

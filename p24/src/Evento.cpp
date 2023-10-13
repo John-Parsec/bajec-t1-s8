@@ -34,7 +34,3 @@ string Evento::geraCod(int tam){
     }
     return cod;
 }
-
-string Evento::getTipo(){
-    return "Evento";
-}

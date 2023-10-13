@@ -20,3 +20,7 @@ void Deslocamento::setOrigem(Evento* origem){
 void Deslocamento::setDestino(Evento* destino){
     this->destino = destino;
 }
+
+string Deslocamento::getTipo() const{
+    return "Deslocamento";
+}
