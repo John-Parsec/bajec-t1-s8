@@ -13,8 +13,9 @@ class Tarefa{
         string nome;
         bool concluido;
     public:
-        Tarefa(string nome);
-        string geraCodigo();
+        Tarefa(string nome, vector<Tarefa*> tarefas);
+        Tarefa(string nome, string codigo, bool concluido);
+        string geraCodigo(vector<Tarefa*> tarefas);
         string getCodigo();
         string getNome();
         void setNome(string nome);
@@ -29,17 +30,19 @@ class GerenciadorTarefas{
         vector<Tarefa*> tarefas;
     public:
         void adicionarTarefa(string nome);
+        void adicionarTarefa(string nome, string codigo, bool concluido);
         void concluirTarefa(string codigo);
         void listarPendentes();
         int getQuantidadeDeTarefas();
         Tarefa* getTarefa(string codigo);
         Tarefa* getTarefa(int index);
+        vector<Tarefa*> getTarefas();
 };
 
 class BancoDeDados{
     public:
-        static void salvarTarefas(string nomeArquivo);
-        static void carregarTarefas(string nomeArquivo);
+        static void salvarTarefas(string nomeArquivo, GerenciadorTarefas gerenciador);
+        static void carregarTarefas(string nomeArquivo, GerenciadorTarefas *gerenciador);
 };
 
 #endif

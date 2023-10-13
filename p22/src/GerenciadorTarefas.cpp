@@ -1,7 +1,12 @@
 # include "Tarefas.hpp"
 
 void GerenciadorTarefas::adicionarTarefa(string nome){
-    Tarefa* tarefa = new Tarefa(nome);
+    Tarefa* tarefa = new Tarefa(nome, tarefas);
+    tarefas.push_back(tarefa);
+}
+
+void GerenciadorTarefas::adicionarTarefa(string nome, string codigo, bool concluido){
+    Tarefa* tarefa = new Tarefa(nome, codigo, concluido);
     tarefas.push_back(tarefa);
 }
 
@@ -36,4 +41,8 @@ Tarefa* GerenciadorTarefas::getTarefa(string codigo){
 
 Tarefa* GerenciadorTarefas::getTarefa(int index){
     return tarefas[index];
+}
+
+vector<Tarefa*> GerenciadorTarefas::getTarefas(){
+    return tarefas;
 }
