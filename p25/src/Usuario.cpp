@@ -21,6 +21,14 @@ void Usuario::setNomeUsuario(string nomeUsuario){
     this->nomeUsuario = nomeUsuario;
 }
 
+vector<Usuario*> Usuario::getSeguidores(){
+    return seguidores;
+}
+
+vector<Usuario*> Usuario::getSeguindo(){
+    return seguindo;
+}
+
 int Usuario::qntdSeguidores(){
     return seguidores.size();
 }
@@ -33,9 +41,19 @@ void Usuario::postaTweet(Tweet* tweet){
     RedeSocial::adicionarTweet(tweet);
 }
 
-void Usuario::seguir(Usuario* usuario){
-    seguindo.push_back(usuario);
-    usuario->seguidores.push_back(this);
+bool Usuario::seguir(Usuario* usuario){
+    if(usuario == this){
+        return false;
+    }else{
+        for(Usuario* s : seguindo){
+            if (s == usuario){
+                return false;
+            }
+        }
+        seguindo.push_back(usuario);
+        usuario->seguidores.push_back(this);
+        return true;
+    }
 }
 
 vector<Tweet*> Usuario::receberFeed(){
