@@ -93,7 +93,7 @@ void Biblioteca ::listarEmprestimos(vector<Emprestimo *> emprestimos)
         cout << emprestimos[i]->getLivro()->getAutor() << setw(20);
         cout << emprestimos[i]->getUsuario()->getNome() << setw(20);
         cout << formatarData(emprestimos[i]->getDataInicio()) << setw(20);
-        cout << emprestimos[i]->getDevolvido();
+        cout << (emprestimos[i]->getDevolvido() ? "Sim" : "Nao");
         cout << endl;
     }
 }
@@ -117,7 +117,7 @@ void Biblioteca::listarLivros(vector<EstoqueLivro *> estoque)
 void Biblioteca::listarEmprestimos(vector<Emprestimo *> emprestimos, Usuario usuario)
 {
     cout << endl;
-    cout << "Emprestimos feito por " << usuario.getNome() << ":" << endl;
+    cout << "Emprestimo(s) feito(s) por " << usuario.getNome() << ":" << endl;
     cout << left;
     cout << setw(20) << "Livro" << setw(20) << "Autor" << setw(20) << "Usuario" << setw(20) << "Dt emprestimo" << setw(20) << setw(20) << "Devolvido" << endl;
     if (emprestimos.size() == 0)
@@ -134,7 +134,8 @@ void Biblioteca::listarEmprestimos(vector<Emprestimo *> emprestimos, Usuario usu
             cout << emprestimos[i]->getLivro()->getAutor() << setw(20);
             cout << emprestimos[i]->getUsuario()->getNome() << setw(20);
             cout << formatarData(emprestimos[i]->getDataInicio()) << setw(20);
-            cout << emprestimos[i]->getDevolvido();
+            cout << (emprestimos[i]->getDevolvido() ? "Sim" : "Nao");
+
             cout << endl;
         }
     }
