@@ -18,13 +18,13 @@ class Cliente{
         void setCpf(string cpf);
 };
 
-class Dependete{
+class Dependente{
     private:
         string nome;
         Cliente* dependente_de;
     
     public:
-        Dependete(string nome, Cliente* dependente_de);
+        Dependente(string nome, Cliente* dependente_de);
         string getNome();
         Cliente* getDependenteDe();
         void setNome(string nome);
@@ -114,6 +114,7 @@ class Venda{
         void setCod(string cod);
         void setCliente(Cliente* cliente);
         void setPacote(Pacote* pacote);
+        string geraCod(int tam);
 };
 
 class Agencia{
@@ -124,7 +125,7 @@ class Agencia{
         vector<Pacote*> pacotes;
         vector<Evento*> eventos;
         vector<Venda*> vendas;
-        vector<Dependete*> dependentes;
+        vector<Dependente*> dependentes;
 
     public:
         Agencia(string nome, string cnpj);
