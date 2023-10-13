@@ -27,6 +27,14 @@ bool Tweet::validaTweet(string conteudo){
     }
 }
 
+bool Tweet::validaTweet(){
+    if(this->conteudo.length() > 255){
+        return false;
+    }else{
+        return true;
+    }
+}
+
 string Tweet::toString(){
     return "@"+ this->autor->getNomeUsuario() + "( " + this->dataCriacao.toString() +" ): " + this->conteudo;
 }
