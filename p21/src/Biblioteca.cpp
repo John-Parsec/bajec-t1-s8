@@ -30,21 +30,24 @@ void Biblioteca::registrarEmprestimo(Livro livro, Usuario usuario)
         estoqueLivro->qtde--;
         time_t tempo;
         tempo = time(NULL);
-        struct tm data = *localtime(&tempo);
-        string completa = to_string(data.tm_mday) + "/" + to_string(data.tm_mon + 1) + "/" + to_string(data.tm_year + 1900);
-       // Emprestimo *emprestimo = new Emprestimo(&livro, &usuario, completa); // falta implementar a classe Data
-       // emprestimos.push_back(emprestimo);
+        Emprestimo *emprestimo = new Emprestimo(&livro, &usuario, tempo);
+        this->emprestimos.push_back(emprestimo);
+        cout << "Emprestimo registrado com sucesso!" << endl;
+    }
+    else
+    {
+        cout << "Livro não disponível!" << endl;
     }
 }
 
 void Biblioteca::adicionarLivro(Livro livro, int qtde)
 {
-    EstoqueLivro *estoqueLivro = buscarEstoque(livro);
+    EstoqueLivro *estoqueLivro = this->buscarEstoque(livro);
     if (estoqueLivro != NULL)
     {
-        cout << "Livro já registrada, Deseja atualizar quantidade?" << endl;
+        cout << "Livro ja registrada, Deseja atualizar quantidade?" << endl;
         cout << "1 - Sim" << endl;
-        cout << "2 - Não" << endl;
+        cout << "2 - Nao" << endl;
         int opcao;
         cin >> opcao;
         if (opcao == 1)
@@ -59,6 +62,3 @@ void Biblioteca::adicionarLivro(Livro livro, int qtde)
         cout << "Livro adicionado com sucesso!" << endl;
     }
 }
-
-
-
