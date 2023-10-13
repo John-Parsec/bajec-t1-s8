@@ -11,6 +11,8 @@ DataHora::DataHora(int dia, int mes, int ano, int hora, int minuto){
     this->dataHora->tm_year = ano;
     this->dataHora->tm_hour = hora;
     this->dataHora->tm_min = minuto;
+
+    mktime(this->dataHora);
 }
 
 tm* DataHora::getDataHora(){
@@ -23,6 +25,8 @@ void DataHora::setDataHora(int dia, int mes, int ano, int hora, int minuto){
     this->dataHora->tm_year = ano;
     this->dataHora->tm_hour = hora;
     this->dataHora->tm_min = minuto;
+
+    mktime(this->dataHora);
 }
 
 string DataHora::toString(){
