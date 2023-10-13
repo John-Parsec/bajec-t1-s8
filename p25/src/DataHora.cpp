@@ -35,12 +35,14 @@ string DataHora::toString(){
     return data + " " + hora;
 }
 
-tm DataHora::dataHoraAtual(){
+DataHora DataHora::dataHoraAtual(){
     time_t now = time(0);
 
     tm* ltm = localtime(&now);
     
-    return *ltm;
+    DataHora dataHora(ltm->tm_mday, ltm->tm_mon, ltm->tm_year, ltm->tm_hour, ltm->tm_min);
+
+    return dataHora;
 }
 
 bool DataHora::operator<(DataHora* dataHora){
