@@ -36,7 +36,7 @@ void Biblioteca::registrarEmprestimo(Livro livro, Usuario usuario)
     }
     else
     {
-        cout << "Livro não disponível!" << endl;
+        cout << "Livro nao disponível!" << endl;
     }
 }
 
@@ -78,7 +78,7 @@ void Biblioteca ::devolverLivro(Livro livro, Usuario usuario)
             return;
         }
     }
-    cout << "Devolução não aceita" << endl;
+    cout << "Devolucao nao aceita" << endl;
 }
 
 void Biblioteca ::listarEmprestimos(vector<Emprestimo *> emprestimos)
