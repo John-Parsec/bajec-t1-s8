@@ -4,6 +4,8 @@
 #include<iostream>
 #include<vector>
 #include<string>
+#include <iomanip>
+
 
 using namespace std;
 
@@ -70,9 +72,13 @@ class Emprestimo{
         bool devolvido;
     public:
         Emprestimo(Livro* livro, Usuario* usuario, time_t dataInicio);
-        Livro getLivro();
-        Usuario getUsuario();
+        Livro *getLivro();
+        Usuario *getUsuario();
         void setDataDevolucao(Data dataDevolucao);
+        time_t getDataInicio();
+        bool getDevolvido();
+        void setDevolvido(bool devolvido);
+        
         
 };
 
@@ -89,6 +95,12 @@ class Biblioteca{
         bool livroDisponivel(Livro livro);
         EstoqueLivro* buscarEstoque(Livro livro);
         void devolverLivro(Livro livro, Usuario usuario);
+        static void listarEmprestimos(vector<Emprestimo*> emprestimos);
+        static void listarLivros(vector<EstoqueLivro*> estoque);
+        static void listarEmprestimos(vector<Emprestimo*> emprestimos,Usuario usuario);
+        vector<EstoqueLivro*> getEstoque();
+        vector<Emprestimo*> getEmprestimos();
+
 };
 
 #endif
