@@ -76,7 +76,7 @@ class Tweet{
 class RedeSocial{
     private:
         vector<Usuario*> usuarios;
-        vector<Tweet*> tweets;
+        static vector<Tweet*> tweets;
     public:
         bool registarUsuario(string nomeUsuario, string nome);
         static void adicionarTweet(Tweet* tweet); // inserir ordenado 
