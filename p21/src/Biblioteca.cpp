@@ -26,4 +26,26 @@ void Biblioteca::registrarEmprestimo(Livro livro, Usuario usuario){
         emprestimos.push_back(emprestimo);
     }
 }
+void Biblioteca::adicionarLivro(Livro livro, int qtde)
+{
+    EstoqueLivro *estoqueLivro = buscarEstoque(livro);
+    if (estoqueLivro != NULL)
+    {
+        cout << "Livro já registrada, Deseja atualizar quantidade?" << endl;
+        cout << "1 - Sim" << endl;
+        cout << "2 - Não" << endl;
+        int opcao;
+        cin >> opcao;
+        if (opcao == 1)
+            estoqueLivro->qtde += qtde;
+    }
+    else
+    {
+        EstoqueLivro *estoqueLivro = new EstoqueLivro();
+        estoqueLivro->livro = &livro;
+        estoqueLivro->qtde = qtde;
+        this->estoque.push_back(estoqueLivro);
+        cout << "Livro adicionado com sucesso!" << endl;
+    }
+}
 
