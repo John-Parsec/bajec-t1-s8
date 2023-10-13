@@ -45,7 +45,7 @@ void Biblioteca::adicionarLivro(Livro livro, int qtde)
     EstoqueLivro *estoqueLivro = this->buscarEstoque(livro);
     if (estoqueLivro != NULL)
     {
-        cout << "Livro ja registrada, Deseja atualizar quantidade?" << endl;
+        cout << "Livro ja registrado, Deseja atualizar quantidade?" << endl;
         cout << "1 - Sim" << endl;
         cout << "2 - Nao" << endl;
         int opcao;
