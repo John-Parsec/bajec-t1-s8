@@ -1,5 +1,6 @@
 #include "Twitter.hpp"
 #include <fstream>
+#include <string>
 
 void BancoDeDados::salvarDados(string nomeTw, string nomeUs, RedeSocial redeSocial)
 {
@@ -25,12 +26,12 @@ void BancoDeDados::salvarDados(string nomeTw, string nomeUs, RedeSocial redeSoci
         arquivoUs << usuarios[i]->getNome() << endl;
 
         vector<Usuario*> seguindo = usuarios[i]->getSeguindo();
-        for(unsigned int j = 0; j < seguindo.size(); i++)
+        for(unsigned int j = 0; j < seguindo.size(); j++)
         {
             arquivoUs << seguindo[j]->getNomeUsuario() << endl;
         }
 
-        cout << endl;
+        arquivoUs << endl;
     }
     arquivoUs.close();
 }
@@ -85,7 +86,7 @@ void BancoDeDados::recuperarDados(string nomeTw, string nomeUs, RedeSocial *rede
         string seguindo;
 
         getline(arquivoUs, seguindo);
-        while(seguindo != " ")
+        while(seguindo != "")
         {
             lista.seguindo.push_back(seguindo);
             getline(arquivoUs, seguindo);
