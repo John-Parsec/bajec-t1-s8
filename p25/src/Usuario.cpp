@@ -21,14 +21,6 @@ void Usuario::setNomeUsuario(string nomeUsuario){
     this->nomeUsuario = nomeUsuario;
 }
 
-vector<Usuario*> Usuario::getSeguidores(){
-    return seguidores;
-}
-
-vector<Usuario*> Usuario::getSeguindo(){
-    return seguindo;
-}
-
 int Usuario::qntdSeguidores(){
     return seguidores.size();
 }
@@ -37,9 +29,9 @@ int Usuario::qntdSeguindo(){
     return seguindo.size();
 }
 
-void Usuario::postaTweet(Tweet* tweet){
+void Usuario::postaTweet(Tweet* tweet, RedeSocial *redeSocial){
     if(tweet->validaTweet())
-        RedeSocial::adicionarTweet(tweet);
+        redeSocial->adicionarTweet(tweet);
 }
 
 bool Usuario::seguir(Usuario* usuario){
@@ -57,8 +49,8 @@ bool Usuario::seguir(Usuario* usuario){
     }
 }
 
-vector<Tweet*> Usuario::receberFeed(){
-    vector<Tweet*> tweets = RedeSocial::listarTweets();
+vector<Tweet*> Usuario::receberFeed(RedeSocial *redeSocial){
+    vector<Tweet*> tweets = redeSocial->listarTweets();
     vector<Tweet*> feed;
     for (Tweet* t : tweets){
         for(Usuario* s : seguindo){
@@ -77,4 +69,12 @@ string Usuario::toStringUser(){
 
 string Usuario::toStringCompleto(){
     return toStringUser() + " | Seguidores: " + to_string(qntdSeguidores()) + " | Seguindo: " + to_string(qntdSeguindo());
+}
+
+vector<Usuario*> Usuario::getSeguindo(){
+    return this-> seguindo;
+}
+
+vector<Usuario*> Usuario::getSeguidores(){
+    return this-> seguidores;
 }
