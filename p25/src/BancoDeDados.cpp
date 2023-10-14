@@ -7,7 +7,7 @@ void BancoDeDados::salvarDados(string nomeTw, string nomeUs, RedeSocial redeSoci
     vector<Tweet*> tweets = redeSocial.listarTweets();
     ofstream arquivoTw(nomeTw, ios::trunc);
 
-    for(int i = 0; i < tweets.size(); i++)
+    for(unsigned int i = 0; i < tweets.size(); i++)
     {
         arquivoTw << tweets[i]->getAutor()->getNomeUsuario() << endl;
         arquivoTw << tweets[i]->getDataCriacao().toString() << endl;
@@ -19,13 +19,13 @@ void BancoDeDados::salvarDados(string nomeTw, string nomeUs, RedeSocial redeSoci
     vector<Usuario*> usuarios = redeSocial.listarUsuarios();
     ofstream arquivoUs(nomeUs, ios::trunc);
 
-    for(int i = 0; i < usuarios.size(); i++)
+    for(unsigned int i = 0; i < usuarios.size(); i++)
     {
         arquivoUs << usuarios[i]->getNomeUsuario() << endl;
         arquivoUs << usuarios[i]->getNome() << endl;
 
         vector<Usuario*> seguindo = usuarios[i]->getSeguindo();
-        for(int j = 0; j < seguindo.size(); i++)
+        for(unsigned int j = 0; j < seguindo.size(); i++)
         {
             arquivoUs << seguindo[j]->getNomeUsuario() << endl;
         }
@@ -64,9 +64,7 @@ void BancoDeDados::recuperarDados(string nomeTw, string nomeUs, RedeSocial *rede
         redeSocial->adicionarTweet(tweet);
     }
 
-    arquivoTw.clear();
-    arquivoTw.seekg(0);
-
+    arquivoTw.close();
 
     //USER CRIANDO
     struct structSeguindo
@@ -79,7 +77,7 @@ void BancoDeDados::recuperarDados(string nomeTw, string nomeUs, RedeSocial *rede
     while(arquivoUs)
     {
         getline(arquivoUs, nomeUsuario);
-        if(!arquivoTw)
+        if(!arquivoUs)
             {break;}
         getline(arquivoUs, nome);
         
@@ -97,12 +95,11 @@ void BancoDeDados::recuperarDados(string nomeTw, string nomeUs, RedeSocial *rede
         redeSocial->registarUsuario(nomeUsuario, nome);
     }
 
-    arquivoUs.clear();
-    arquivoUs.seekg(0);
+    arquivoUs.close();
 
     //TWEET POINTER
     vector<Tweet*> pointerTweets = redeSocial->listarTweets();
-    for(int i = 0; i < pointerTweets.size(); i++)
+    for(unsigned int i = 0; i < pointerTweets.size(); i++)
     {
         Usuario *userP = redeSocial->buscarUsuario(tweetsPointers[i]);
         pointerTweets[i]->setAutor(userP);
@@ -110,9 +107,9 @@ void BancoDeDados::recuperarDados(string nomeTw, string nomeUs, RedeSocial *rede
 
     //USER POINTER
     vector<Usuario*> pointerUsuarios = redeSocial->listarUsuarios();
-    for(int i = 0; i < pointerUsuarios.size(); i++)
+    for(unsigned int i = 0; i < pointerUsuarios.size(); i++)
     {
-        for(int j = 0; j < segPointers[i].seguindo.size(); j++)
+        for(unsigned int j = 0; j < segPointers[i].seguindo.size(); j++)
         {
             Usuario *userP = redeSocial->buscarUsuario(segPointers[i].seguindo[j]);
             pointerUsuarios[i]->seguir(userP);

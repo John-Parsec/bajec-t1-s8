@@ -7,6 +7,7 @@
 #include <ctime>
 
 class Tweet;
+class RedeSocial;
 using namespace std;
 
 class DataHora{
@@ -49,13 +50,11 @@ class Usuario{
         void setNome(string nome); 
         string getNomeUsuario();
         void setNomeUsuario(string nomeUsuario);
-        vector<Usuario*> getSeguidores();
-        vector<Usuario*> getSeguindo();
         int qntdSeguidores();
         int qntdSeguindo();
-        void postaTweet(Tweet* tweet);
+        void postaTweet(Tweet* tweet, RedeSocial *redeSocial);
         bool seguir(Usuario* usuario);
-        vector<Tweet*> receberFeed();
+        vector<Tweet*> receberFeed(RedeSocial *redeSocial);
         string toStringUser();
         string toStringCompleto();
         vector<Usuario*> getSeguidores();
@@ -83,14 +82,14 @@ class Tweet{
 class RedeSocial{
     private:
         vector<Usuario*> usuarios;
-        static vector<Tweet*> tweets;
+        vector<Tweet*> tweets;
     public:
         bool registarUsuario(string nomeUsuario, string nome);
-        static void adicionarTweet(Tweet* tweet); // inserir ordenado 
+        void adicionarTweet(Tweet* tweet); // inserir ordenado 
         Usuario* buscarUsuario(string nomeUsuario);
         Usuario* buscarUsuario(int index);
         vector<Usuario*> listarUsuarios();
-        static vector<Tweet*> listarTweets();
+        vector<Tweet*> listarTweets();
 };
 
 class BancoDeDados{

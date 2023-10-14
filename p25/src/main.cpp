@@ -8,6 +8,6 @@ int main()
     string bdUS = "bdUsers.txt";
 
     BancoDeDados::recuperarDados(bdTW, bdUS, &redeSocial);
-
+    cout << "Saindo do programa. Salvando dados..." << endl;
     BancoDeDados::salvarDados(bdTW, bdUS, redeSocial);
 }
