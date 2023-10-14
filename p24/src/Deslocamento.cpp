@@ -1,6 +1,6 @@
 #include "Turismo.hpp"
 
-Deslocamento::Deslocamento(Evento* origem, Evento* destino): Evento(0){
+Deslocamento::Deslocamento(Evento* origem, Evento* destino, int duracao): Evento(duracao){
     this->origem = origem;
     this->destino = destino;
 }

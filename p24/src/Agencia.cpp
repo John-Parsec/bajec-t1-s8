@@ -90,16 +90,16 @@ bool Agencia::removeVenda(Venda* venda){
     return false;
 }
 
-void Agencia::cadastarRoteiro(string nome){
-    this->eventos.push_back(new Roteiro(nome));
+void Agencia::cadastarRoteiro(string nome, int duracao){
+    this->eventos.push_back(new Roteiro(nome, duracao));
 }
 
-void Agencia::cadastarDeslocamento(Evento *origem, Evento *destino){
-    this->eventos.push_back(new Deslocamento(origem, destino));
+void Agencia::cadastarDeslocamento(Evento *origem, Evento *destino, int duracao){
+    this->eventos.push_back(new Deslocamento(origem, destino, duracao));
 }
 
-void Agencia::cadastarPernoite(string nome){
-    this->eventos.push_back(new Pernoite(nome));
+void Agencia::cadastarPernoite(string nome, int duracao){
+    this->eventos.push_back(new Pernoite(nome, duracao));
 }
 
 void Agencia::criarPacote(string nome, vector<Evento*> eventos){

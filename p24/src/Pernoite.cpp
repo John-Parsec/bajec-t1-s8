@@ -1,6 +1,6 @@
 #include "Turismo.hpp"
 
-Pernoite::Pernoite(string local): Evento(0){
+Pernoite::Pernoite(string local, int duracao): Evento(duracao){
     this->local = local;
 }
 

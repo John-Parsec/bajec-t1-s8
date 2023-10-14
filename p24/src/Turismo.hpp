@@ -72,7 +72,7 @@ class Roteiro: public Evento{
         string nome;
 
     public:
-        Roteiro(string nome);
+        Roteiro(string nome, int duracao);
         string getNome();
         void setNome(string nome);
         string getTipo() const;
@@ -84,7 +84,7 @@ class Deslocamento: public Evento{
         Evento* destino;
 
     public:
-        Deslocamento(Evento* origem, Evento* destino);
+        Deslocamento(Evento* origem, Evento* destino, int duracao);
         Evento* getOrigem();
         Evento* getDestino();
         void setOrigem(Evento* origem);
@@ -97,7 +97,7 @@ class Pernoite: public Evento{
         string local;
 
     public:
-        Pernoite(string local);
+        Pernoite(string local, int duracao);
         string getLocal();
         void setLocal(string local);
         string getTipo() const;
@@ -148,9 +148,9 @@ class Agencia{
         bool removePacote(Pacote* pacote);
         bool removeEvento(Evento* evento);
         bool removeVenda(Venda* venda);
-        void cadastarRoteiro(string nome);
-        void cadastarDeslocamento(Evento *origem, Evento *destino);
-        void cadastarPernoite(string nome);
+        void cadastarRoteiro(string nome, int duracao);
+        void cadastarDeslocamento(Evento *origem, Evento *destino, int duracao);
+        void cadastarPernoite(string nome, int duracao);
         void criarPacote(string nome, vector<Evento*> eventos);
         void addCliente(string nome, string cpf);
         void addDependente(string nome, int index);

@@ -1,6 +1,6 @@
 #include "Turismo.hpp"
 
-Roteiro::Roteiro(string nome): Evento(0){
+Roteiro::Roteiro(string nome, int duracao): Evento(duracao){
     this->nome = nome;
 }
 
