@@ -64,6 +64,7 @@ class Pacote{
         void setEventos(vector<Evento*> eventos);
         bool addEvento(Evento* evento);
         bool removeEvento(Evento* evento);
+        string geraCod(int tam);
 };
 
 class Roteiro: public Evento{

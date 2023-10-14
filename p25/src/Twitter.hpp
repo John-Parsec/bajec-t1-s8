@@ -21,7 +21,7 @@ class DataHora{
         string toString();
 
         //Retorna a data e hora atual
-        static tm dataHoraAtual();
+        static DataHora dataHoraAtual();
 
         //Verificam apenas a Data
         bool dataAnterior(DataHora* dataHora);
@@ -49,10 +49,12 @@ class Usuario{
         void setNome(string nome); 
         string getNomeUsuario();
         void setNomeUsuario(string nomeUsuario);
+        vector<Usuario*> getSeguidores();
+        vector<Usuario*> getSeguindo();
         int qntdSeguidores();
         int qntdSeguindo();
         void postaTweet(Tweet* tweet);
-        void seguir(Usuario* usuario);
+        bool seguir(Usuario* usuario);
         vector<Tweet*> receberFeed();
         string toStringUser();
         string toStringCompleto();
@@ -73,6 +75,7 @@ class Tweet{
         string getConteudo();
         DataHora getDataCriacao();
         bool validaTweet(string conteudo); // verificar se tem ate 255 caracteres
+        bool validaTweet();
         string toString();
 };
 
