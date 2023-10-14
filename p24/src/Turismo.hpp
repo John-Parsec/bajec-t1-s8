@@ -18,13 +18,13 @@ class Cliente{
         void setCpf(string cpf);
 };
 
-class Dependete{
+class Dependente{
     private:
         string nome;
         Cliente* dependente_de;
     
     public:
-        Dependete(string nome, Cliente* dependente_de);
+        Dependente(string nome, Cliente* dependente_de);
         string getNome();
         Cliente* getDependenteDe();
         void setNome(string nome);
@@ -45,7 +45,7 @@ class Evento{
         void setDuraçãoPrevista(int duraçãoPrevista);
         void setCod(string cod);
         string geraCod(int tam);
-        string getTipo();
+        virtual string getTipo() const = 0;
 };
 
 class Pacote{
@@ -75,6 +75,7 @@ class Roteiro: public Evento{
         Roteiro(string nome);
         string getNome();
         void setNome(string nome);
+        string getTipo() const;
 };
 
 class Deslocamento: public Evento{
@@ -88,6 +89,7 @@ class Deslocamento: public Evento{
         Evento* getDestino();
         void setOrigem(Evento* origem);
         void setDestino(Evento* destino);
+        string getTipo() const;
 };
 
 class Pernoite: public Evento{
@@ -98,6 +100,7 @@ class Pernoite: public Evento{
         Pernoite(string local);
         string getLocal();
         void setLocal(string local);
+        string getTipo() const;
 };
 
 class Venda{
@@ -114,6 +117,7 @@ class Venda{
         void setCod(string cod);
         void setCliente(Cliente* cliente);
         void setPacote(Pacote* pacote);
+        string geraCod(int tam);
 };
 
 class Agencia{
@@ -124,7 +128,7 @@ class Agencia{
         vector<Pacote*> pacotes;
         vector<Evento*> eventos;
         vector<Venda*> vendas;
-        vector<Dependete*> dependentes;
+        vector<Dependente*> dependentes;
 
     public:
         Agencia(string nome, string cnpj);

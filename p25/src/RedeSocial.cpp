@@ -1,5 +1,7 @@
 #include "Twitter.hpp"
 
+
+
 bool RedeSocial::registarUsuario(string nomeUsuario, string nome){
     Usuario* usuario = new Usuario(nomeUsuario, nome);
     usuarios.push_back(usuario);
