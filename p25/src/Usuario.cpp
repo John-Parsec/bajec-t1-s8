@@ -59,3 +59,11 @@ string Usuario::toStringUser(){
 string Usuario::toStringCompleto(){
     return toStringUser() + " | Seguidores: " + to_string(qntdSeguidores()) + " | Seguindo: " + to_string(qntdSeguindo());
 }
+
+vector<Usuario*> Usuario::getSeguindo(){
+    return this-> seguindo;
+}
+
+vector<Usuario*> Usuario::getSeguidores(){
+    return this-> seguidores;
+}

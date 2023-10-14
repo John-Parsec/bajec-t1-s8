@@ -56,6 +56,8 @@ class Usuario{
         vector<Tweet*> receberFeed();
         string toStringUser();
         string toStringCompleto();
+        vector<Usuario*> getSeguidores();
+        vector<Usuario*> getSeguindo();
 };
 
 class Tweet{
@@ -65,7 +67,9 @@ class Tweet{
         DataHora dataCriacao;
     public:
         Tweet(Usuario* autor, string conteudo);
+        Tweet(string conteudo, DataHora dataCriacao);
         Usuario* getAutor();
+        void setAutor(Usuario *autor);
         string getConteudo();
         DataHora getDataCriacao();
         bool validaTweet(string conteudo); // verificar se tem ate 255 caracteres
@@ -84,14 +88,12 @@ class RedeSocial{
         Usuario* buscarUsuario(int index);
         vector<Usuario*> listarUsuarios();
         static vector<Tweet*> listarTweets();
-        vector<Usuario*> getUsuarios();
-        vector<Tweet*> getTweets();
 };
 
 class BancoDeDados{
     public:
-        static void salvarDados(string nomeArquivo, RedeSocial redeSocial);
-        static void recuperarDados(string nomeArquivo, RedeSocial *redeSocial);
+        static void salvarDados(string nomeTw, string nomeUs, RedeSocial redeSocial);
+        static void recuperarDados(string nomeTw, string nomeUs, RedeSocial *redeSocial);
 };
 
 #endif

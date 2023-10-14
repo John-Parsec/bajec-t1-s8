@@ -1,62 +1,121 @@
 #include "Twitter.hpp"
 #include <fstream>
 
-/*
-USUARIO:
-nomeUsuario (unico)
-nome
-seguidores
-seguindo
-
-TWEET:
-autor
-conteudo
-dataDeCriacao
-*/
-
-static void salvarDados(string nomeArquivo, RedeSocial redeSocial)
+void BancoDeDados::salvarDados(string nomeTw, string nomeUs, RedeSocial redeSocial)
 {
-    
-}
-static void recuperarDados(string nomeArquivo, RedeSocial *redeSocial);
+    //TWEET
+    vector<Tweet*> tweets = redeSocial.listarTweets();
+    ofstream arquivoTw(nomeTw, ios::trunc);
 
-/*#include "Tarefas.hpp"
-#include <fstream>
-
-void BancoDeDados::salvarTarefas(string nomeArquivo, GerenciadorTarefas gerenciador)
-{
-    vector<Tarefa*> tarefas = gerenciador.getTarefas();
-    ofstream arquivo(nomeArquivo, ios::trunc);
-    
-    for(int i = 0; i < tarefas.size(); i++)
+    for(int i = 0; i < tweets.size(); i++)
     {
-        arquivo << tarefas[i]->getNome() << endl;
-        arquivo << tarefas[i]->getCodigo() << endl;
-        arquivo << tarefas[i]->getConcluido() << endl;
+        arquivoTw << tweets[i]->getAutor()->getNomeUsuario() << endl;
+        arquivoTw << tweets[i]->getDataCriacao().toString() << endl;
+        arquivoTw << tweets[i]->getConteudo() << endl;
     }
-    arquivo.close();
+    arquivoTw.close();
+
+    //USER
+    vector<Usuario*> usuarios = redeSocial.listarUsuarios();
+    ofstream arquivoUs(nomeUs, ios::trunc);
+
+    for(int i = 0; i < usuarios.size(); i++)
+    {
+        arquivoUs << usuarios[i]->getNomeUsuario() << endl;
+        arquivoUs << usuarios[i]->getNome() << endl;
+
+        vector<Usuario*> seguindo = usuarios[i]->getSeguindo();
+        for(int j = 0; j < seguindo.size(); i++)
+        {
+            arquivoUs << seguindo[j]->getNomeUsuario() << endl;
+        }
+
+        cout << endl;
+    }
+    arquivoUs.close();
 }
 
-void BancoDeDados::carregarTarefas(string nomeArquivo, GerenciadorTarefas *gerenciador)
+void BancoDeDados::recuperarDados(string nomeTw, string nomeUs, RedeSocial *redeSocial)
 {
-    ifstream arquivo(nomeArquivo);
+    vector<string> tweetsPointers;
+    ifstream arquivoTw(nomeTw);
+    string autor, conteudo, strDh;
+    DataHora dataHora;
 
-    string codigo, nome, strConcluido;
-    bool concluido;
-
-    while(arquivo)
+    //TWEET CRIANDO
+    while(arquivoTw)
     {
-        getline(arquivo, nome);
-        if(!arquivo)
+        getline(arquivoTw, autor);
+        if(!arquivoTw)
             {break;}
+        tweetsPointers.push_back(autor);
+        getline(arquivoTw, strDh);
+        getline(arquivoTw, conteudo);
 
-        getline(arquivo, codigo);
-        getline(arquivo, strConcluido);
-        concluido = stoi(strConcluido);
+        int dia, mes, ano, hora, minuto;
+        dia = stoi(strDh.substr(0, 2));
+        mes = stoi(strDh.substr(3, 2));
+        ano = stoi(strDh.substr(6, 4));
+        hora = stoi(strDh.substr(11, 2));
+        minuto = stoi(strDh.substr(14, 2));
+        dataHora.setDataHora(dia, mes, ano, hora, minuto);
 
-        //gerenciador->adicionarTarefa(nome, codigo, concluido);
-        gerenciador->adicionarTarefa(nome, codigo, concluido);
+        Tweet* tweet = new Tweet(conteudo, dataHora);
+        redeSocial->adicionarTweet(tweet);
     }
 
-    arquivo.close();
-}*/
+    arquivoTw.clear();
+    arquivoTw.seekg(0);
+
+
+    //USER CRIANDO
+    struct structSeguindo
+    {
+        vector<string> seguindo;
+    };
+    vector<structSeguindo> segPointers;
+    ifstream arquivoUs(nomeUs);
+    string nomeUsuario, nome;
+    while(arquivoUs)
+    {
+        getline(arquivoUs, nomeUsuario);
+        if(!arquivoTw)
+            {break;}
+        getline(arquivoUs, nome);
+        
+        structSeguindo lista;
+        string seguindo;
+
+        getline(arquivoUs, seguindo);
+        while(seguindo != " ")
+        {
+            lista.seguindo.push_back(seguindo);
+            getline(arquivoUs, seguindo);
+        }
+        
+        segPointers.push_back(lista);
+        redeSocial->registarUsuario(nomeUsuario, nome);
+    }
+
+    arquivoUs.clear();
+    arquivoUs.seekg(0);
+
+    //TWEET POINTER
+    vector<Tweet*> pointerTweets = redeSocial->listarTweets();
+    for(int i = 0; i < pointerTweets.size(); i++)
+    {
+        Usuario *userP = redeSocial->buscarUsuario(tweetsPointers[i]);
+        pointerTweets[i]->setAutor(userP);
+    }
+
+    //USER POINTER
+    vector<Usuario*> pointerUsuarios = redeSocial->listarUsuarios();
+    for(int i = 0; i < pointerUsuarios.size(); i++)
+    {
+        for(int j = 0; j < segPointers[i].seguindo.size(); j++)
+        {
+            Usuario *userP = redeSocial->buscarUsuario(segPointers[i].seguindo[j]);
+            pointerUsuarios[i]->seguir(userP);
+        }
+    }
+}
