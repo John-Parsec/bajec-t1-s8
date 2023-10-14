@@ -30,7 +30,18 @@ void DataHora::setDataHora(int dia, int mes, int ano, int hora, int minuto){
 }
 
 string DataHora::toString(){
-    string data = to_string(this->dataHora->tm_mday) + "/" + to_string(this->dataHora->tm_mon) + "/" + to_string(this->dataHora->tm_year);
+    string data = "";
+
+    if(this->dataHora->tm_mday < 10)
+        data += "0";
+    
+    data += to_string(this->dataHora->tm_mday) + "/";
+    
+    if(this->dataHora->tm_mon < 10)
+        data += "0";
+    
+    data += to_string(this->dataHora->tm_mon) + "/" + to_string(this->dataHora->tm_year);
+
     string hora = to_string(this->dataHora->tm_hour) + ":" + to_string(this->dataHora->tm_min);
     return data + " " + hora;
 }
