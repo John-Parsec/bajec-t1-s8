@@ -32,4 +32,12 @@
 *.app
 
 # Pastas
+<<<<<<< HEAD
 .vscode
+=======
+.vscode
+*/src/output
+*/src/build
+
+*.ini
+>>>>>>> 3537a16a32592491f2c05eabcd6c1aee7db23673
